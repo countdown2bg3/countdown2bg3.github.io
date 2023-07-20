@@ -1,2 +1,124 @@
-# countdown2bg3.github.io
-A simple countdown to the PC release of Baldur's Gate 3
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Countdown to Baldur's Gate 3</title>
+			<style>
+				@font-face {
+					font-family: 'Mignon-Medium';
+					src:url('Mignon-Medium.ttf.woff') format('woff'),
+						url('Mignon-Medium.ttf.svg#Mignon-Medium') format('svg'),
+						url('Mignon-Medium.ttf.eot'),
+						url('Mignon-Medium.ttf.eot?#iefix') format('embedded-opentype'); 
+					font-weight: normal;
+					font-style: normal;
+				}
+
+				body {
+					background-image: url("bg3-background.jpg");
+					background-size: cover;
+					background-position: center center;
+					background-repeat: no-repeat;
+					background-attachment: fixed;
+					background-color: #0B0D1D;
+				}
+
+				*{
+					box-sizing: border-box;
+				}
+
+				.content {
+					width: 400px; /* 500px */
+					height: 325px; /* 500px */
+					border: 33px solid; /* 33px */
+					border-image: url("Border.svg") 33 stretch;
+					margin: 50px auto 0 0; /* 0 auto */
+				}
+				
+				@media (max-width: 991.98px) {
+					.content {margin: 0 auto;}
+				}
+				
+				.sub-content {
+					position: relative;
+					left: -33px; /* -33px */
+					top: -33px; /* -33px */
+					width: 400px; /* 500px */
+					height: 325px; /* 500px */
+					border-left: 32px solid rgba(0,0,0,0);
+					border-top: 17px solid rgba(0,0,0,0);
+					border-right: 32px solid rgba(0,0,0,0);
+					border-bottom: 17px solid rgba(0,0,0,0);
+					background-color: #000;
+					background-clip: padding-box;
+					padding:20px;
+					z-index: -1;
+				}
+
+				#counter{
+					position: absolute;
+					color:#fff;
+					margin:auto 0;
+					text-align: center;
+					font-family: 'Mignon-Medium';
+					font-size:20px;
+					left:0;
+					top:10px;
+				}
+
+				#countDown {
+					background: linear-gradient(to right, #BB9F7D, #fff, #BB9F7D);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					/*color:#BB9F7D; */
+					font-size:40px; 
+					font-weight:bold; 
+				}
+
+				#counter img {width:75%; height:auto;}
+			</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="sub-content">
+				<div id="counter">
+					<p>
+						<span id="countDown"></span><br/>
+						until<br/>
+						<img src="logo-bg3.png" atl="Baldur's Gate 3">
+					</p>
+				</div>
+			</div>
+		</div>
+		<script>
+		// Set the date we're counting down to
+		var countDownDate = new Date("Aug 3, 2023 00:00:00").getTime();
+
+		// Update the count down every 1 second
+		var x = setInterval(function() {
+
+		  // Get today's date and time
+		  var now = new Date().getTime();
+
+		  // Find the distance between now and the count down date
+		  var distance = countDownDate - now;
+
+		  // Time calculations for days, hours, minutes and seconds
+		  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		  // Display the result in the element with id="demo"
+		  document.getElementById("countDown").innerHTML = days + "d " + hours + "h "
+		  + minutes + "m " + seconds + "s ";
+
+		  // If the count down is finished, write some text
+		  if (distance < 0) {
+			clearInterval(x);
+			document.getElementById("demo").innerHTML = "EXPIRED";
+		  }
+		}, 1000);
+		</script>
+	</body>
+</html>
